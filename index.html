@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Código de Ética y Buena Conducta — Firma Digital</title>
+<title>Documentación de Ingreso — Firma Digital</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   :root{
@@ -20,26 +20,42 @@
   header.top h1{font-size:1.15rem;margin:0;letter-spacing:.2px}
   header.top .vig{font-size:.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent)}
   .doc{background:var(--paper);border:1px solid var(--line);border-radius:10px;
-    box-shadow:var(--shadow);padding:28px 30px;margin:22px 0;max-height:46vh;overflow-y:auto;
+    box-shadow:var(--shadow);padding:28px 30px;margin:0 0 6px;max-height:38vh;overflow-y:auto;
     font-size:.9rem;color:var(--ink-soft)}
   .doc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);
     margin:22px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--line)}
+  .doc h2:first-child{margin-top:0}
   .doc h3{font-size:.92rem;margin:16px 0 4px;color:var(--ink)}
   .doc p{margin:6px 0}
   .doc ul{margin:6px 0 6px 18px;padding:0}
   .doc li{margin:3px 0}
   .doc .lead{font-weight:600;color:var(--ink)}
+  .sec-title{font-size:.95rem;font-weight:700;color:var(--ink);margin:26px 0 8px;
+    display:flex;align-items:center;gap:8px}
+  .sec-title .n{background:var(--accent);color:#fff;font-size:.72rem;width:22px;height:22px;
+    border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
   .card{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);
     padding:22px 24px;margin-bottom:18px}
   .card h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--accent);
     margin:0 0 16px}
+  .card h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.8px;color:var(--ink-soft);
+    margin:18px 0 10px;padding-top:14px;border-top:1px dashed var(--line)}
+  .card h3:first-of-type{border-top:0;padding-top:0}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  @media(max-width:560px){.grid{grid-template-columns:1fr}}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .col-2{grid-column:span 2}
+  @media(max-width:560px){.grid,.grid-3{grid-template-columns:1fr}.col-2{grid-column:auto}}
   label{display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;
     letter-spacing:.6px;color:var(--ink-soft);margin-bottom:5px}
-  input[type=text],input[type=date]{width:100%;padding:10px 12px;border:1px solid var(--line);
-    border-radius:7px;font-size:.95rem;background:var(--paper);color:var(--ink)}
-  input:focus{outline:2px solid var(--accent-2);outline-offset:0;border-color:transparent}
+  input[type=text],input[type=date],input[type=tel],select{width:100%;padding:10px 12px;
+    border:1px solid var(--line);border-radius:7px;font-size:.95rem;background:var(--paper);color:var(--ink)}
+  input:focus,select:focus{outline:2px solid var(--accent-2);outline-offset:0;border-color:transparent}
+  .radio-row{display:flex;gap:16px;align-items:center;padding:6px 0}
+  .radio-row label{display:inline-flex;align-items:center;gap:6px;margin:0;text-transform:none;
+    font-weight:500;font-size:.9rem;letter-spacing:0;color:var(--ink)}
+  .radio-row input{width:17px;height:17px;accent-color:var(--accent)}
+  .tools{display:grid;grid-template-columns:1fr auto;gap:10px 16px;align-items:center}
+  .tools .t-name{font-size:.9rem;color:var(--ink)}
   .sig-area{margin-top:6px}
   .pad-wrap{position:relative;border:1px dashed var(--accent);border-radius:8px;
     background:repeating-linear-gradient(0deg,#fff,#fff 27px,#f0f4f8 28px);touch-action:none}
@@ -48,10 +64,9 @@
   .pad-baseline{position:absolute;left:14px;right:14px;bottom:34px;border-bottom:1px solid #c7cfda;pointer-events:none}
   .row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:10px;flex-wrap:wrap}
   .check{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;color:var(--ink-soft);
-    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:16px}
+    background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:12px}
   .check input{margin-top:2px;width:18px;height:18px;accent-color:var(--accent)}
-  button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:11px 18px;cursor:pointer;
-    transition:.15s}
+  button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:11px 18px;cursor:pointer;transition:.15s}
   .btn-ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
   .btn-ghost:hover{background:var(--paper)}
   .btn-main{background:var(--accent);color:#fff;font-size:1rem;width:100%;padding:14px}
@@ -67,17 +82,17 @@
 <body>
 <div class="wrap">
   <header class="top">
-    <h1>Código de Ética y Buena Conducta</h1>
+    <h1>Documentación de Ingreso</h1>
     <span class="vig">V2026</span>
   </header>
 
-  <!-- Texto del documento -->
-  <div class="doc" id="docText">
+  <!-- ============ 1. CÓDIGO DE ÉTICA ============ -->
+  <div class="sec-title"><span class="n">1</span> Código de Ética y Buena Conducta</div>
+  <div class="doc">
     <h2>Objetivo</h2>
     <p>Establecer un marco claro para promover un ambiente de trabajo seguro y ético, donde se prioricen y se fomenten las comunicaciones abiertas, respetuosas y honestas.</p>
     <h2>Alcance</h2>
     <p>Esta política se aplica a todos los empleados, contratistas, visitantes y cualquier otra persona que ingrese o se encuentre dentro de las instalaciones de la empresa, o en cualquier lugar donde se realicen actividades laborales relacionadas con la empresa.</p>
-
     <h2>1. Buenas Prácticas en el Entorno Laboral</h2>
     <h3>1.1 Comportamiento Esperado</h3>
     <p>Los empleados deben comportarse de manera profesional, respetuosa, responsable y ética en todo momento. Se espera que todos los colaboradores:</p>
@@ -99,33 +114,236 @@
     <p>Ante cualquiera de estos actos, el empleado debe notificar de inmediato a Recursos Humanos o a su superior. Según el caso, se apartará del puesto, se evaluará la situación y se aplicarán las acciones correctivas correspondientes tras la investigación interna.</p>
     <h3>1.4 Responsabilidad de los Empleados</h3>
     <p>Cumplir esta política, notificar incidentes o comportamientos inapropiados y colaborar con las investigaciones que correspondan.</p>
-    <h3>1.5 Conuencias por el Incumplimiento</h3>
+    <h3>1.5 Consecuencias por el Incumplimiento</h3>
     <p>Se considera una violación grave del código y puede derivar en: (1) advertencia verbal o escrita, (2) suspensión temporal, (3) desvinculación. En casos graves (armas, sustancias que pongan en peligro la seguridad, robo o manipulación incorrecta de mercadería, o beneficios no autorizados) se procederá con la desvinculación inmediata sin previo aviso.</p>
   </div>
+  <label class="check" style="margin-top:12px">
+    <input type="checkbox" id="acc_etica">
+    <span>Declaro que leí, comprendí y acepto el <b>Código de Ética y Buena Conducta (2026)</b>, y me comprometo a cumplirlo.</span>
+  </label>
 
-  <!-- Datos + firma -->
+  <!-- ============ 2. NO CONTRATACIÓN DE FAMILIARES ============ -->
+  <div class="sec-title"><span class="n">2</span> Política de No Contratación de Familiares</div>
+  <div class="doc">
+    <h2>1. Propósito</h2>
+    <p>Garantizar procesos de selección y contratación transparentes, equitativos y basados exclusivamente en criterios de mérito, competencia y adecuación al perfil del puesto. Busca prevenir situaciones que puedan derivar en conflictos de interés, favoritismos o comprometer la integridad de la toma de decisiones dentro de la organización.</p>
+    <h2>2. Alcance</h2>
+    <p>Aplica a todos los procesos de reclutamiento, selección y contratación llevados a cabo por la Empresa, incluyendo personal efectivo, temporario, pasantes, contratados por terceros o consultores. Abarca todos los niveles jerárquicos y áreas de la organización.</p>
+    <h2>3. Definición de "Familiar"</h2>
+    <p>Se considerará "Familiar" a las siguientes personas con relación directa o por afinidad con colaboradores de la empresa:</p>
+    <ul>
+      <li>Cónyuge o pareja conviviente.</li>
+      <li>Hijos/as.</li>
+      <li>Hermanos/as.</li>
+      <li>Padres, suegros/as.</li>
+      <li>Cuñados/as.</li>
+      <li>Tíos/as, sobrinos/as, primos/as de primer grado.</li>
+    </ul>
+    <h2>4. Lineamientos Generales</h2>
+    <p><span class="lead">a.</span> No se permitirá la contratación de familiares directos de empleados/as de la empresa, salvo autorización expresa de la Dirección General y previa evaluación del área de Recursos Humanos, en función de la criticidad del rol, la imposibilidad de cobertura externa y la ausencia de conflicto de intereses.</p>
+    <p><span class="lead">b.</span> En ninguna circunstancia se permitirá la contratación de familiares para puestos en los que puedan generarse relaciones jerárquicas directas o dependencia funcional.</p>
+    <p><span class="lead">c.</span> La ocultación de vínculos familiares al momento de la postulación o ingreso será considerada una falta grave y podrá derivar en la rescisión de la relación laboral.</p>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <div class="radio-row" style="margin-bottom:6px">
+      <span class="t-name" style="font-weight:600">¿Tenés familiares trabajando en la empresa?</span>
+    </div>
+    <div class="radio-row">
+      <label><input type="radio" name="fam_vinculo" value="No"> No</label>
+      <label><input type="radio" name="fam_vinculo" value="Sí"> Sí</label>
+    </div>
+    <div id="fam_detalle_wrap" style="display:none;margin-top:8px">
+      <label for="fam_detalle">Detalle (nombre, vínculo y sector)</label>
+      <input type="text" id="fam_detalle" placeholder="Ej.: Juan Pérez · hermano · Depósito Sabores">
+    </div>
+    <label class="check" style="margin-top:14px;margin-bottom:0">
+      <input type="checkbox" id="acc_familiares">
+      <span>Declaro conocer y aceptar la <b>Política de No Contratación de Familiares</b> y que la información sobre vínculos familiares es veraz.</span>
+    </label>
+  </div>
+
+  <!-- ============ 3. CONFIDENCIALIDAD ============ -->
+  <div class="sec-title"><span class="n">3</span> Política de Confidencialidad</div>
+  <div class="doc">
+    <h2>1.1 Principios de Protección de la Información</h2>
+    <ul>
+      <li><span class="lead">Legalidad y Transparencia:</span> el tratamiento de datos personales será legal y transparente.</li>
+      <li><span class="lead">Limitación de Propósito:</span> la información se usará solo para los fines especificados y no se compartirá sin consentimiento, salvo requerimiento legal.</li>
+      <li><span class="lead">Minimización de Datos:</span> solo se recopilan los datos necesarios.</li>
+      <li><span class="lead">Exactitud:</span> se tomarán medidas para mantener los datos precisos y actualizados.</li>
+      <li><span class="lead">Seguridad:</span> medidas técnicas y organizativas para proteger la información contra accesos no autorizados, pérdida o daño.</li>
+    </ul>
+    <h2>1.2 Recolección y Uso de Datos</h2>
+    <p>Los datos personales se recopilan únicamente para proveer un servicio adecuado a los clientes y para administrar la relación laboral con los empleados.</p>
+    <h2>1.3 Prohibición de Divulgación</h2>
+    <p>Queda estrictamente prohibido divulgar o compartir información confidencial con personas ajenas a la organización sin autorización expresa y por escrito de la dirección. La divulgación no autorizada constituye una infracción grave y puede derivar en acciones disciplinarias (incluida la terminación de la relación laboral) y acciones legales civiles y/o penales. Para información altamente sensible, la obligación de confidencialidad puede extenderse por tiempo indefinido tras la finalización del contrato.</p>
+    <h2>1.4 Retención y Eliminación</h2>
+    <p>Los datos se retienen solo el tiempo necesario para los fines descritos y luego se eliminan de forma segura.</p>
+    <h2>1.5 Derechos de los Titulares</h2>
+    <p>Acceso a sus datos, corrección de datos inexactos y solicitud de eliminación cuando ya no sean necesarios.</p>
+    <h2>1.6 Procedimientos de Seguridad</h2>
+    <p>Restricciones de acceso, encriptación, contraseñas seguras y auditorías/monitoreo regular de los sistemas.</p>
+    <h2>1.7 Responsabilidad Individual</h2>
+    <ul>
+      <li>No dejar documentos o pantallas con información confidencial a la vista de personas no autorizadas.</li>
+      <li>No discutir asuntos sensibles en espacios públicos o frente a terceros.</li>
+      <li>Informar de inmediato cualquier incidente o posible fuga a RR.HH. o Tecnología.</li>
+    </ul>
+    <h2>1.8 Uso de Dispositivos y Canales</h2>
+    <ul>
+      <li>Solo se usan dispositivos, correos y sistemas aprobados por la Empresa para información sensible.</li>
+      <li>Prohibido enviar documentación confidencial por canales no autorizados (correo personal, WhatsApp, nubes no corporativas).</li>
+      <li>Prohibido realizar videos o fotografías dentro de los establecimientos, salvo autorización del superior.</li>
+      <li>La Empresa podrá auditar y monitorear dispositivos y medios dentro del marco legal vigente.</li>
+    </ul>
+    <h2>1.9 Gestión de Incidentes</h2>
+    <p>Ante sospecha o confirmación de filtración, extravío o acceso no autorizado: notificación inmediata al responsable de seguridad informática y a RR.HH., investigación interna y medidas correctivas, comunicacionales y legales según corresponda.</p>
+    <h2>1.10 Cultura de Protección de Datos</h2>
+    <p>La confidencialidad es un valor organizacional; se evalúa dentro del desempeño laboral y los procesos de liderazgo.</p>
+  </div>
+  <label class="check" style="margin-top:12px">
+    <input type="checkbox" id="acc_confid">
+    <span>Declaro haber leído y comprendido la <b>Política de Confidencialidad</b> y me comprometo a proteger la información a la que acceda.</span>
+  </label>
+
+  <!-- ============ 4. LEGAJO ============ -->
+  <div class="sec-title"><span class="n">4</span> Legajo del Colaborador</div>
+
   <div class="card">
-    <h2>Datos del firmante</h2>
-    <div class="grid">
-      <div>
-        <label for="aclaracion">Aclaración (Nombre y Apellido)</label>
-        <input type="text" id="aclaracion" placeholder="Ej.: Kevin Pérez" autocomplete="name">
-      </div>
-      <div>
-        <label for="dni">DNI</label>
-        <input type="text" id="dni" inputmode="numeric" placeholder="Ej.: 30123456">
-      </div>
-      <div>
-        <label for="legajo">Sector</label>
-        <input type="text" id="legajo" placeholder="Ej.: 1204 · Sabores">
-      </div>
-      <div>
-        <label for="fecha">Fecha</label>
-        <input type="date" id="fecha">
-      </div>
+    <h2>Datos del ingreso</h2>
+    <div class="grid-3">
+      <div><label for="fecha_ingreso">Fecha de ingreso</label><input type="date" id="fecha_ingreso"></div>
+      <div><label for="puesto">Puesto</label><input type="text" id="puesto"></div>
+      <div><label for="legajo">Legajo</label><input type="text" id="legajo" placeholder="N°"></div>
     </div>
 
-    <div class="sig-area">
+    <h3>Datos personales</h3>
+    <div class="grid">
+      <div class="col-2"><label for="aclaracion">Nombre y Apellido</label><input type="text" id="aclaracion" placeholder="Ej.: Kevin Pérez" autocomplete="name"></div>
+      <div><label for="dni">DNI</label><input type="text" id="dni" inputmode="numeric"></div>
+      <div><label for="cuil">CUIL</label><input type="text" id="cuil" inputmode="numeric" placeholder="20-00000000-0"></div>
+      <div><label for="fnac">Fecha de nacimiento</label><input type="date" id="fnac"></div>
+      <div><label for="nacionalidad">Nacionalidad</label><input type="text" id="nacionalidad"></div>
+      <div>
+        <label for="estado_civil">Estado civil</label>
+        <select id="estado_civil">
+          <option value="">—</option><option>Soltero/a</option><option>Casado/a</option>
+          <option>Conviviente</option><option>Divorciado/a</option><option>Viudo/a</option>
+        </select>
+      </div>
+      <div><label for="celular">Celular</label><input type="tel" id="celular"></div>
+      <div class="col-2"><label for="tel_alt">Teléfono alternativo</label><input type="tel" id="tel_alt"></div>
+    </div>
+
+    <h3>Datos familiares</h3>
+    <div class="grid">
+      <div><label for="padre">Nombre y apellido del padre</label><input type="text" id="padre"></div>
+      <div><label for="madre">Nombre y apellido de la madre</label><input type="text" id="madre"></div>
+    </div>
+    <div class="grid-3" style="margin-top:12px">
+      <div><label for="conyuge">Cónyuge</label><input type="text" id="conyuge"></div>
+      <div><label for="conyuge_dni">DNI cónyuge</label><input type="text" id="conyuge_dni" inputmode="numeric"></div>
+      <div><label for="conyuge_fnac">Fecha nac. cónyuge</label><input type="date" id="conyuge_fnac"></div>
+    </div>
+    <div class="grid-3" style="margin-top:12px">
+      <div><label for="hijo1">Hijo/a 1</label><input type="text" id="hijo1"></div>
+      <div><label for="hijo1_dni">DNI</label><input type="text" id="hijo1_dni" inputmode="numeric"></div>
+      <div><label for="hijo1_fnac">Fecha nac.</label><input type="date" id="hijo1_fnac"></div>
+    </div>
+    <div class="grid-3" style="margin-top:12px">
+      <div><label for="hijo2">Hijo/a 2</label><input type="text" id="hijo2"></div>
+      <div><label for="hijo2_dni">DNI</label><input type="text" id="hijo2_dni" inputmode="numeric"></div>
+      <div><label for="hijo2_fnac">Fecha nac.</label><input type="date" id="hijo2_fnac"></div>
+    </div>
+    <div class="grid-3" style="margin-top:12px">
+      <div><label for="hijo3">Hijo/a 3</label><input type="text" id="hijo3"></div>
+      <div><label for="hijo3_dni">DNI</label><input type="text" id="hijo3_dni" inputmode="numeric"></div>
+      <div><label for="hijo3_fnac">Fecha nac.</label><input type="date" id="hijo3_fnac"></div>
+    </div>
+
+    <h3>Antecedentes laborales</h3>
+    <div class="grid">
+      <div class="col-2"><label for="ant1_empresa">Empresa 1</label><input type="text" id="ant1_empresa"></div>
+      <div><label for="ant1_puesto">Puesto</label><input type="text" id="ant1_puesto"></div>
+      <div><label for="ant1_tel">Teléfono</label><input type="tel" id="ant1_tel"></div>
+      <div><label for="ant1_inicio">Fecha de inicio</label><input type="date" id="ant1_inicio"></div>
+      <div><label for="ant1_cese">Fecha de cese</label><input type="date" id="ant1_cese"></div>
+      <div class="col-2"><label for="ant1_dom">Domicilio y localidad</label><input type="text" id="ant1_dom"></div>
+    </div>
+    <div class="grid" style="margin-top:12px">
+      <div class="col-2"><label for="ant2_empresa">Empresa 2</label><input type="text" id="ant2_empresa"></div>
+      <div><label for="ant2_puesto">Puesto</label><input type="text" id="ant2_puesto"></div>
+      <div><label for="ant2_tel">Teléfono</label><input type="tel" id="ant2_tel"></div>
+      <div><label for="ant2_inicio">Fecha de inicio</label><input type="date" id="ant2_inicio"></div>
+      <div><label for="ant2_cese">Fecha de cese</label><input type="date" id="ant2_cese"></div>
+      <div class="col-2"><label for="ant2_dom">Domicilio y localidad</label><input type="text" id="ant2_dom"></div>
+    </div>
+
+    <h3>Domicilio real</h3>
+    <div class="grid-3">
+      <div class="col-2"><label for="dom_calle">Calle</label><input type="text" id="dom_calle"></div>
+      <div><label for="dom_nro">N°</label><input type="text" id="dom_nro"></div>
+      <div><label for="dom_piso">Piso</label><input type="text" id="dom_piso"></div>
+      <div><label for="dom_dpto">Dpto</label><input type="text" id="dom_dpto"></div>
+      <div><label for="dom_cp">CP</label><input type="text" id="dom_cp"></div>
+      <div class="col-2"><label for="dom_localidad">Localidad</label><input type="text" id="dom_localidad"></div>
+      <div><label for="dom_entrecalles">Entre calles</label><input type="text" id="dom_entrecalles"></div>
+      <div><label for="dom_fijo">Teléfono fijo</label><input type="tel" id="dom_fijo"></div>
+      <div><label for="dom_cel">Teléfono celular</label><input type="tel" id="dom_cel"></div>
+    </div>
+  </div>
+
+  <!-- DDJJ Salud -->
+  <div class="card">
+    <h2>Declaración Jurada de Buena Salud</h2>
+    <div class="grid">
+      <div>
+        <label>Enfermedades preexistentes</label>
+        <div class="radio-row">
+          <label><input type="radio" name="enf" value="No"> No</label>
+          <label><input type="radio" name="enf" value="Sí"> Sí</label>
+        </div>
+      </div>
+      <div><label for="enf_cual">¿Cuál?</label><input type="text" id="enf_cual"></div>
+      <div>
+        <label>¿Se realizó alguna cirugía?</label>
+        <div class="radio-row">
+          <label><input type="radio" name="cir" value="No"> No</label>
+          <label><input type="radio" name="cir" value="Sí"> Sí</label>
+        </div>
+      </div>
+      <div><label for="cir_cual">¿Cuál?</label><input type="text" id="cir_cual"></div>
+    </div>
+    <label class="check" style="margin-top:14px;margin-bottom:0">
+      <input type="checkbox" id="acc_salud">
+      <span>Declaro bajo juramento <b>gozar de buena salud física y mental</b>. Declaración que hago en honor a la verdad.</span>
+    </label>
+  </div>
+
+  <!-- Entrega de herramientas -->
+  <div class="card">
+    <h2>Entrega de Herramientas de Trabajo</h2>
+    <div class="tools">
+      <span class="t-name">Celular corporativo</span>
+      <div class="radio-row"><label><input type="radio" name="h_celular" value="Sí"> Sí</label><label><input type="radio" name="h_celular" value="No"> No</label></div>
+      <span class="t-name">Computadora portátil</span>
+      <div class="radio-row"><label><input type="radio" name="h_pc" value="Sí"> Sí</label><label><input type="radio" name="h_pc" value="No"> No</label></div>
+      <span class="t-name">Llave de oficina</span>
+      <div class="radio-row"><label><input type="radio" name="h_llave" value="Sí"> Sí</label><label><input type="radio" name="h_llave" value="No"> No</label></div>
+      <span class="t-name">Control de cochera</span>
+      <div class="radio-row"><label><input type="radio" name="h_cochera" value="Sí"> Sí</label><label><input type="radio" name="h_cochera" value="No"> No</label></div>
+    </div>
+    <div style="margin-top:14px"><label for="h_otros">Otros</label><input type="text" id="h_otros"></div>
+  </div>
+
+  <!-- ============ FIRMA ============ -->
+  <div class="card">
+    <h2>Firma del colaborador</h2>
+    <div class="grid">
+      <div><label for="fecha">Fecha de firma</label><input type="date" id="fecha"></div>
+      <div><label for="sector">Sector / Marca</label><input type="text" id="sector" placeholder="Ej.: Sabores"></div>
+    </div>
+    <div class="sig-area" style="margin-top:14px">
       <label>Firma</label>
       <div class="pad-wrap">
         <canvas id="pad"></canvas>
@@ -133,7 +351,7 @@
         <span class="pad-hint">Firmá dentro del recuadro con el mouse o el dedo</span>
       </div>
       <div class="row">
-        <span style="font-size:.78rem;color:#9aa4b2">Se registran fecha, hora y navegador al firmar.</span>
+        <span style="font-size:.78rem;color:#9aa4b2">Se registran fecha, hora y navegador al firmar. La firma se aplica a todas las secciones.</span>
         <button type="button" class="btn-ghost" id="clearBtn">Limpiar firma</button>
       </div>
     </div>
@@ -141,8 +359,8 @@
 
   <div class="card">
     <label class="check">
-      <input type="checkbox" id="accept">
-      <span>Declaro que leí, comprendí y acepto el Código de Ética y Buena Conducta (2026), y me comprometo a cumplirlo.</span>
+      <input type="checkbox" id="acc_final">
+      <span>Confirmo que todos los datos consignados son correctos y verídicos, y presto conformidad a la totalidad de la documentación de ingreso.</span>
     </label>
     <button class="btn-main" id="sendBtn">Firmar y enviar</button>
     <div class="msg" id="msg"></div>
@@ -153,12 +371,17 @@
 
 <script>
 // ====== CONFIG ======
-// Pegá acá la URL del Web App de Apps Script (deploy → Web app → Anyone).
 const ENDPOINT = "https://script.google.com/macros/s/AKfycbyYVOV52aEa08j4V5tlWxEJzttYFPvXVGCut9WssHWmBEfdY4eokC8b8JXud1WNrWLS/exec";
 
 // ====== Fecha por defecto ======
-const fechaInput = document.getElementById('fecha');
-fechaInput.value = new Date().toISOString().slice(0,10);
+document.getElementById('fecha').value = new Date().toISOString().slice(0,10);
+
+// ====== Mostrar detalle de familiares ======
+document.querySelectorAll('input[name="fam_vinculo"]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    document.getElementById('fam_detalle_wrap').style.display = r.value==='Sí' ? 'block' : 'none';
+  });
+});
 
 // ====== Signature pad ======
 const canvas = document.getElementById('pad');
@@ -199,114 +422,212 @@ document.getElementById('clearBtn').addEventListener('click',()=>{
 setTimeout(resizeCanvas,50);
 window.addEventListener('resize',resizeCanvas);
 
-// ====== Mensajes ======
+// ====== Helpers ======
 const msg=document.getElementById('msg');
 function showMsg(text,type){msg.className='msg '+type;msg.textContent=text;}
+const val=id=>{const el=document.getElementById(id);return el?el.value.trim():'';};
+const radio=name=>{const el=document.querySelector('input[name="'+name+'"]:checked');return el?el.value:'';};
 
 // ====== Generar PDF ======
-function buildPDF(data){
+function buildPDF(d){
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({unit:'mm',format:'a4'});
   const M=18, W=210-M*2; let y=20;
+
+  const header=(txt)=>{
+    doc.setFillColor(20,33,61);doc.rect(0,0,210,14,'F');
+    doc.setTextColor('#ffffff');doc.setFont('helvetica','bold');doc.setFontSize(11);
+    doc.text(txt,M,9); y=24;
+  };
+  const newPage=(txt)=>{doc.addPage();header(txt);};
+  const need=(mm,txt)=>{ if(y>297-mm){ newPage(txt); } };
   const line=(txt,size,style,color)=>{
     doc.setFont('helvetica',style||'normal');doc.setFontSize(size);
     doc.setTextColor(color||'#33415c');
     const lines=doc.splitTextToSize(txt,W);
-    lines.forEach(l=>{ if(y>278){doc.addPage();y=20;} doc.text(l,M,y); y+=size*0.52; });
+    lines.forEach(l=>{ if(y>282){doc.addPage();y=20;} doc.text(l,M,y); y+=size*0.52; });
   };
-  const gap=(n)=>{y+=n};
+  const gap=n=>{y+=n};
+  const h=(t)=>{gap(2);line(t,11,'bold','#1b4965');};
 
-  doc.setFillColor(20,33,61);doc.rect(0,0,210,14,'F');
-  doc.setTextColor('#ffffff');doc.setFont('helvetica','bold');doc.setFontSize(12);
-  doc.text('CÓDIGO DE ÉTICA Y BUENA CONDUCTA — VIGENCIA MAYO 2026',M,9);
-  y=24;
+  // Bloque de firma reutilizable
+  const signBlock=(titulo)=>{
+    need(50,titulo);
+    gap(6);doc.setDrawColor('#e3ddd0');doc.line(M,y,210-M,y);gap(8);
+    line('CONFORMIDAD',10,'bold','#1b4965');
+    if(d.sigImg){ doc.addImage(d.sigImg,'PNG',M,y,55,22); }
+    doc.setDrawColor('#14213d');doc.line(M,y+23,M+65,y+23);
+    doc.setFont('helvetica','normal');doc.setFontSize(8.5);doc.setTextColor('#14213d');
+    doc.text('Firma',M,y+28);
+    const cx=M+80;
+    const put=(lbl,v,oy)=>{doc.setFont('helvetica','bold');doc.setFontSize(8.5);doc.setTextColor('#33415c');
+      doc.text(lbl,cx,y+oy);doc.setFont('helvetica','normal');doc.setTextColor('#14213d');
+      doc.text(String(v||'—'),cx+28,y+oy);};
+    put('Aclaración:',d.aclaracion,4);
+    put('DNI:',d.dni,10);
+    put('Sector:',d.sector,16);
+    put('Fecha:',d.fecha,22);
+    put('Firmado (hora):',d.timestamp,28);
+    y+=34;
+  };
 
-  line('Objetivo',11,'bold','#1b4965');
+  // ---------- 1. ÉTICA ----------
+  header('1 · CÓDIGO DE ÉTICA Y BUENA CONDUCTA — V2026');
+  h('Objetivo');
   line('Establecer un marco claro para promover un ambiente de trabajo seguro y ético, donde se prioricen y fomenten las comunicaciones abiertas, respetuosas y honestas.',9.5);
-  gap(2);
-  line('Alcance',11,'bold','#1b4965');
+  h('Alcance');
   line('Aplica a todos los empleados, contratistas, visitantes y cualquier persona dentro de las instalaciones o en actividades laborales relacionadas con la empresa.',9.5);
-  gap(2);
-  line('1. Buenas Prácticas en el Entorno Laboral',11,'bold','#1b4965');
+  h('1. Buenas Prácticas en el Entorno Laboral');
   line('1.1 Comportamiento esperado: actuar de forma profesional, segura y respetuosa; mantener un entorno libre de violencia, amenazas y conflictos de interés; cumplir las normativas de bienestar, seguridad y ética; y tratar a todos con dignidad, sin discriminación ni acoso.',9.5);
-  gap(1);
   line('1.2 Prohibiciones específicas: (a) armas u objetos peligrosos; (b) robo de mercadería o dinero; (c) intercambio de mercadería entre marcas/plantas con fines personales; (d) uso inadecuado de activos, edilicio, maquinaria y vehículos; (e) incumplimiento de las Buenas Prácticas de Manufactura (BPM); (f) alcohol y drogas; (g) aceptación de regalos o beneficios personales que generen conflicto de interés (solo obsequios simbólicos con aprobación previa de RR.HH.).',9.5);
-  gap(1);
   line('1.3 Ante incidentes: notificar de inmediato a RR.HH. o al superior; apartar del puesto si corresponde, evaluar la situación y aplicar acciones correctivas tras la investigación interna.',9.5);
-  gap(1);
   line('1.4 Responsabilidad: cumplir la política, notificar incidentes y colaborar con las investigaciones.',9.5);
-  gap(1);
   line('1.5 Consecuencias: (1) advertencia verbal o escrita, (2) suspensión temporal, (3) desvinculación. En casos graves se procede con la desvinculación inmediata sin previo aviso.',9.5);
+  signBlock('1 · CÓDIGO DE ÉTICA — CONFORMIDAD');
 
-  // Bloque de firma
-  if(y>235){doc.addPage();y=20;}
-  gap(6);
-  doc.setDrawColor('#e3ddd0');doc.line(M,y,210-M,y);gap(8);
-  line('CONFORMIDAD',10,'bold','#1b4965');
-  line('El firmante declara haber leído, comprendido y aceptado el presente Código de Ética y Buena Conducta, comprometiéndose a cumplirlo.',9);
-  gap(4);
+  // ---------- 2. FAMILIARES ----------
+  newPage('2 · POLÍTICA DE NO CONTRATACIÓN DE FAMILIARES');
+  h('1. Propósito');
+  line('Garantizar procesos de selección y contratación transparentes, equitativos y basados en criterios de mérito, competencia y adecuación al perfil. Previene conflictos de interés, favoritismos y compromisos a la integridad de las decisiones.',9.5);
+  h('2. Alcance');
+  line('Aplica a todos los procesos de reclutamiento, selección y contratación (efectivos, temporarios, pasantes, contratados por terceros o consultores), en todos los niveles jerárquicos y áreas.',9.5);
+  h('3. Definición de "Familiar"');
+  line('Cónyuge o pareja conviviente; hijos/as; hermanos/as; padres y suegros/as; cuñados/as; tíos/as, sobrinos/as y primos/as de primer grado.',9.5);
+  h('4. Lineamientos generales');
+  line('(a) No se contratan familiares directos salvo autorización expresa de la Dirección General y evaluación de RR.HH. (b) Nunca se contratan familiares para puestos con relación jerárquica directa o dependencia funcional. (c) La ocultación de vínculos familiares es falta grave y puede derivar en la rescisión de la relación laboral.',9.5);
+  gap(2);
+  line('Declaración del firmante — ¿Tiene familiares en la empresa?: '+(d.fam_vinculo||'—'),9.5,'bold','#14213d');
+  if(d.fam_vinculo==='Sí'){ line('Detalle: '+(d.fam_detalle||'—'),9.5); }
+  signBlock('2 · NO CONTRATACIÓN DE FAMILIARES — CONFORMIDAD');
 
-  // Imagen de firma
-  if(data.sigImg){
-    doc.addImage(data.sigImg,'PNG',M,y,60,25);
-  }
-  doc.setDrawColor('#14213d');doc.line(M,y+26,M+70,y+26);
-  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor('#14213d');
-  doc.text('Firma',M,y+31);
+  // ---------- 3. CONFIDENCIALIDAD ----------
+  newPage('3 · POLÍTICA DE CONFIDENCIALIDAD');
+  h('1.1 Principios de protección');
+  line('Legalidad y transparencia; limitación de propósito; minimización de datos; exactitud; y seguridad (medidas técnicas y organizativas contra accesos no autorizados, pérdida o daño).',9.5);
+  h('1.2 / 1.3 Uso y prohibición de divulgación');
+  line('Los datos se usan solo para prestar servicio a clientes y administrar la relación laboral. Queda prohibido divulgar información confidencial sin autorización expresa y por escrito de la dirección; la divulgación no autorizada es infracción grave y puede derivar en acciones disciplinarias (incluida la desvinculación) y legales civiles/penales. La obligación puede extenderse por tiempo indefinido para información altamente sensible.',9.5);
+  h('1.4 – 1.6 Retención, derechos y seguridad');
+  line('Retención solo por el tiempo necesario y eliminación segura. Derechos de acceso, corrección y eliminación. Restricciones de acceso, encriptación, contraseñas seguras y auditorías.',9.5);
+  h('1.7 – 1.8 Responsabilidad y canales');
+  line('No exponer documentos/pantallas; no discutir temas sensibles en público; informar incidentes. Solo dispositivos y sistemas aprobados; prohibido usar canales no autorizados (correo personal, WhatsApp, nubes no corporativas); prohibido filmar o fotografiar dentro de los establecimientos sin autorización. La Empresa puede auditar y monitorear en el marco legal vigente.',9.5);
+  h('1.9 – 1.10 Incidentes y cultura');
+  line('Ante filtración o acceso no autorizado: notificación inmediata, investigación interna y medidas correctivas/legales. La confidencialidad es un valor organizacional evaluado en el desempeño.',9.5);
+  signBlock('3 · CONFIDENCIALIDAD — CONFORMIDAD');
 
-  const cx=M+90;
-  const put=(lbl,val,offY)=>{doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor('#33415c');
-    doc.text(lbl,cx,y+offY);doc.setFont('helvetica','normal');doc.setTextColor('#14213d');
-    doc.text(val||'—',cx+26,y+offY);};
-  put('Aclaración:',data.aclaracion,4);
-  put('DNI:',data.dni,11);
-  put('Legajo/Sector:',data.legajo,18);
-  put('Fecha:',data.fecha,25);
-  put('Firmado (hora):',data.timestamp,31);
+  // ---------- 4. LEGAJO ----------
+  newPage('4 · LEGAJO DEL COLABORADOR');
+  const field=(lbl,v,oy,x)=>{doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor('#1b4965');
+    doc.text(lbl,x,oy);doc.setFont('helvetica','normal');doc.setTextColor('#14213d');
+    doc.text(String(v||'—'),x,oy+4);};
+  const twoCol=(l1,v1,l2,v2)=>{ need(14,'4 · LEGAJO (cont.)'); field(l1,v1,y,M); field(l2,v2,y,M+W/2); y+=11; };
+  const oneCol=(l1,v1)=>{ need(14,'4 · LEGAJO (cont.)'); field(l1,v1,y,M); y+=11; };
+
+  h('Datos del ingreso');
+  twoCol('Fecha de ingreso',d.fecha_ingreso,'Puesto',d.puesto);
+  oneCol('Legajo N°',d.legajo);
+  h('Datos personales');
+  twoCol('Nombre y Apellido',d.aclaracion,'DNI',d.dni);
+  twoCol('CUIL',d.cuil,'Fecha de nacimiento',d.fnac);
+  twoCol('Nacionalidad',d.nacionalidad,'Estado civil',d.estado_civil);
+  twoCol('Celular',d.celular,'Teléfono alternativo',d.tel_alt);
+  h('Datos familiares');
+  twoCol('Padre',d.padre,'Madre',d.madre);
+  twoCol('Cónyuge',d.conyuge,'DNI cónyuge',d.conyuge_dni);
+  oneCol('Fecha nac. cónyuge',d.conyuge_fnac);
+  twoCol('Hijo/a 1',d.hijo1,'DNI',d.hijo1_dni);
+  twoCol('Hijo/a 2',d.hijo2,'DNI',d.hijo2_dni);
+  twoCol('Hijo/a 3',d.hijo3,'DNI',d.hijo3_dni);
+  h('Antecedentes laborales');
+  twoCol('Empresa 1',d.ant1_empresa,'Puesto',d.ant1_puesto);
+  twoCol('Inicio',d.ant1_inicio,'Cese',d.ant1_cese);
+  twoCol('Domicilio/Localidad',d.ant1_dom,'Teléfono',d.ant1_tel);
+  twoCol('Empresa 2',d.ant2_empresa,'Puesto',d.ant2_puesto);
+  twoCol('Inicio',d.ant2_inicio,'Cese',d.ant2_cese);
+  twoCol('Domicilio/Localidad',d.ant2_dom,'Teléfono',d.ant2_tel);
+  h('Domicilio real');
+  twoCol('Calle',d.dom_calle,'N°',d.dom_nro);
+  twoCol('Piso',d.dom_piso,'Dpto',d.dom_dpto);
+  twoCol('CP',d.dom_cp,'Localidad',d.dom_localidad);
+  twoCol('Entre calles',d.dom_entrecalles,'Tel. fijo',d.dom_fijo);
+  oneCol('Tel. celular',d.dom_cel);
+
+  h('Declaración Jurada de Buena Salud');
+  twoCol('Enfermedades preexistentes',d.enf,'¿Cuál?',d.enf_cual);
+  twoCol('¿Cirugía?',d.cir,'¿Cuál?',d.cir_cual);
+  line('El firmante declara bajo juramento gozar de buena salud física y mental.',9,'normal','#33415c');
+
+  h('Entrega de Herramientas de Trabajo');
+  twoCol('Celular corporativo',d.h_celular,'Computadora portátil',d.h_pc);
+  twoCol('Llave de oficina',d.h_llave,'Control de cochera',d.h_cochera);
+  oneCol('Otros',d.h_otros);
+
+  signBlock('4 · LEGAJO — CONFORMIDAD');
 
   return doc;
 }
 
 // ====== Enviar ======
 document.getElementById('sendBtn').addEventListener('click',async()=>{
-  const aclaracion=document.getElementById('aclaracion').value.trim();
-  const dni=document.getElementById('dni').value.trim();
-  const legajo=document.getElementById('legajo').value.trim();
-  const fecha=document.getElementById('fecha').value;
-  const accepted=document.getElementById('accept').checked;
+  const aclaracion=val('aclaracion'), dni=val('dni');
+  const accEtica=document.getElementById('acc_etica').checked;
+  const accFam=document.getElementById('acc_familiares').checked;
+  const accConf=document.getElementById('acc_confid').checked;
+  const accSalud=document.getElementById('acc_salud').checked;
+  const accFinal=document.getElementById('acc_final').checked;
 
   if(!aclaracion||!dni){return showMsg('Completá nombre y DNI.','err');}
   if(!hasSignature){return showMsg('Falta la firma.','err');}
-  if(!accepted){return showMsg('Tenés que aceptar el código para continuar.','err');}
+  if(!(accEtica&&accFam&&accConf&&accSalud&&accFinal)){
+    return showMsg('Tenés que aceptar las 3 políticas, la DDJJ de salud y la conformidad final.','err');
+  }
 
   const btn=document.getElementById('sendBtn');btn.disabled=true;
   showMsg('Generando y enviando el documento…','wait');
 
-  const payload={
-    aclaracion,dni,legajo,fecha,
+  const d={
+    aclaracion, dni, sector:val('sector'), fecha:val('fecha'),
+    fam_vinculo:radio('fam_vinculo'), fam_detalle:val('fam_detalle'),
+    fecha_ingreso:val('fecha_ingreso'), puesto:val('puesto'), legajo:val('legajo'),
+    cuil:val('cuil'), fnac:val('fnac'), nacionalidad:val('nacionalidad'),
+    estado_civil:val('estado_civil'), celular:val('celular'), tel_alt:val('tel_alt'),
+    padre:val('padre'), madre:val('madre'),
+    conyuge:val('conyuge'), conyuge_dni:val('conyuge_dni'), conyuge_fnac:val('conyuge_fnac'),
+    hijo1:val('hijo1'), hijo1_dni:val('hijo1_dni'), hijo1_fnac:val('hijo1_fnac'),
+    hijo2:val('hijo2'), hijo2_dni:val('hijo2_dni'), hijo2_fnac:val('hijo2_fnac'),
+    hijo3:val('hijo3'), hijo3_dni:val('hijo3_dni'), hijo3_fnac:val('hijo3_fnac'),
+    ant1_empresa:val('ant1_empresa'), ant1_puesto:val('ant1_puesto'), ant1_tel:val('ant1_tel'),
+    ant1_inicio:val('ant1_inicio'), ant1_cese:val('ant1_cese'), ant1_dom:val('ant1_dom'),
+    ant2_empresa:val('ant2_empresa'), ant2_puesto:val('ant2_puesto'), ant2_tel:val('ant2_tel'),
+    ant2_inicio:val('ant2_inicio'), ant2_cese:val('ant2_cese'), ant2_dom:val('ant2_dom'),
+    dom_calle:val('dom_calle'), dom_nro:val('dom_nro'), dom_piso:val('dom_piso'),
+    dom_dpto:val('dom_dpto'), dom_cp:val('dom_cp'), dom_localidad:val('dom_localidad'),
+    dom_entrecalles:val('dom_entrecalles'), dom_fijo:val('dom_fijo'), dom_cel:val('dom_cel'),
+    enf:radio('enf'), enf_cual:val('enf_cual'), cir:radio('cir'), cir_cual:val('cir_cual'),
+    h_celular:radio('h_celular'), h_pc:radio('h_pc'), h_llave:radio('h_llave'),
+    h_cochera:radio('h_cochera'), h_otros:val('h_otros'),
     sigImg:canvas.toDataURL('image/png'),
     timestamp:new Date().toLocaleString('es-AR')
   };
-  const pdf=buildPDF(payload);
+
+  const pdf=buildPDF(d);
   const pdfBase64=pdf.output('datauristring').split(',')[1];
   const safe=(aclaracion+'_'+dni).replace(/[^\w\-]/g,'_');
-  const filename='Etica_'+safe+'_'+fecha+'.pdf';
+  const filename='Ingreso_'+safe+'_'+d.fecha+'.pdf';
 
   try{
     const res=await fetch(ENDPOINT,{
       method:'POST',
-      headers:{'Content-Type':'text/plain;charset=utf-8'}, // evita preflight CORS
-      body:JSON.stringify({filename,pdfBase64,aclaracion,dni,legajo,fecha,timestamp:payload.timestamp})
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(Object.assign({filename,pdfBase64},d,{sigImg:undefined}))
     });
     const out=await res.json();
     if(out.ok){
       showMsg('✓ Firmado y guardado en Drive correctamente. También podés descargar tu copia.','ok');
-      pdf.save(filename); // copia local para el firmante
+      pdf.save(filename);
     }else{
       throw new Error(out.error||'Respuesta inesperada del servidor');
     }
   }catch(err){
-    // Fallback: al menos descarga la copia firmada
     pdf.save(filename);
     showMsg('No se pudo confirmar el guardado en Drive ('+err.message+'). Se descargó tu copia; reintentá o avisá a RR.HH.','err');
   }finally{
