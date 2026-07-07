@@ -233,6 +233,8 @@
       </div>
       <div><label for="celular">Celular</label><input type="tel" id="celular"></div>
       <div class="col-2"><label for="tel_alt">Teléfono alternativo</label><input type="tel" id="tel_alt"></div>
+      <div><label for="contacto_emergencia">Contacto de emergencia</label><input type="text" id="contacto_emergencia" placeholder="Nombre y teléfono"></div>
+      <div><label for="parentesco">Parentesco</label><input type="text" id="parentesco" placeholder="Ej.: Madre, Cónyuge, Hermano"></div>
     </div>
 
     <h3>Datos familiares</h3>
@@ -530,6 +532,7 @@ function buildPDF(d){
   twoCol('CUIL',d.cuil,'Fecha de nacimiento',d.fnac);
   twoCol('Nacionalidad',d.nacionalidad,'Estado civil',d.estado_civil);
   twoCol('Celular',d.celular,'Teléfono alternativo',d.tel_alt);
+  twoCol('Contacto de emergencia',d.contacto_emergencia,'Parentesco',d.parentesco);
   h('Datos familiares');
   twoCol('Padre',d.padre,'Madre',d.madre);
   twoCol('Cónyuge',d.conyuge,'DNI cónyuge',d.conyuge_dni);
@@ -590,6 +593,7 @@ document.getElementById('sendBtn').addEventListener('click',async()=>{
     fecha_ingreso:val('fecha_ingreso'), puesto:val('puesto'), legajo:val('legajo'),
     cuil:val('cuil'), fnac:val('fnac'), nacionalidad:val('nacionalidad'),
     estado_civil:val('estado_civil'), celular:val('celular'), tel_alt:val('tel_alt'),
+    contacto_emergencia:val('contacto_emergencia'), parentesco:val('parentesco'),
     padre:val('padre'), madre:val('madre'),
     conyuge:val('conyuge'), conyuge_dni:val('conyuge_dni'), conyuge_fnac:val('conyuge_fnac'),
     hijo1:val('hijo1'), hijo1_dni:val('hijo1_dni'), hijo1_fnac:val('hijo1_fnac'),
