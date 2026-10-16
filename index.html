@@ -47,9 +47,16 @@
   @media(max-width:560px){.grid,.grid-3{grid-template-columns:1fr}.col-2{grid-column:auto}}
   label{display:block;font-size:.75rem;font-weight:600;text-transform:uppercase;
     letter-spacing:.6px;color:var(--ink-soft);margin-bottom:5px}
-  input[type=text],input[type=date],input[type=tel],select{width:100%;padding:10px 12px;
+  input[type=text],input[type=date],input[type=tel],input[type=email],select,textarea{width:100%;padding:10px 12px;
     border:1px solid var(--line);border-radius:7px;font-size:.95rem;background:var(--paper);color:var(--ink)}
-  input:focus,select:focus{outline:2px solid var(--accent-2);outline-offset:0;border-color:transparent}
+  textarea{font-family:inherit;resize:vertical}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--accent-2);outline-offset:0;border-color:transparent}
+  .fam-item{border:1px solid var(--line);border-radius:8px;padding:14px 16px 16px;margin-top:12px}
+  .fam-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+  .fam-title{font-size:.88rem;font-weight:700;color:var(--ink)}
+  .fam-del{background:transparent;color:var(--err);border:1px solid var(--line);padding:6px 12px;font-size:.8rem}
+  .fam-del:hover{background:#fdecec}
+  .fam-sub{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--accent);margin:18px 0 10px}
   .radio-row{display:flex;gap:16px;align-items:center;padding:6px 0}
   .radio-row label{display:inline-flex;align-items:center;gap:6px;margin:0;text-transform:none;
     font-weight:500;font-size:.9rem;letter-spacing:0;color:var(--ink)}
@@ -238,30 +245,61 @@
     </div>
 
     <h3>Datos familiares</h3>
-    <div class="grid">
-      <div><label for="padre">Nombre y apellido del padre</label><input type="text" id="padre"></div>
-      <div><label for="madre">Nombre y apellido de la madre</label><input type="text" id="madre"></div>
-    </div>
-    <div class="grid-3" style="margin-top:12px">
-      <div><label for="conyuge">Cónyuge</label><input type="text" id="conyuge"></div>
-      <div><label for="conyuge_dni">DNI cónyuge</label><input type="text" id="conyuge_dni" inputmode="numeric"></div>
-      <div><label for="conyuge_fnac">Fecha nac. cónyuge</label><input type="date" id="conyuge_fnac"></div>
-    </div>
-    <div class="grid-3" style="margin-top:12px">
-      <div><label for="hijo1">Hijo/a 1</label><input type="text" id="hijo1"></div>
-      <div><label for="hijo1_dni">DNI</label><input type="text" id="hijo1_dni" inputmode="numeric"></div>
-      <div><label for="hijo1_fnac">Fecha nac.</label><input type="date" id="hijo1_fnac"></div>
-    </div>
-    <div class="grid-3" style="margin-top:12px">
-      <div><label for="hijo2">Hijo/a 2</label><input type="text" id="hijo2"></div>
-      <div><label for="hijo2_dni">DNI</label><input type="text" id="hijo2_dni" inputmode="numeric"></div>
-      <div><label for="hijo2_fnac">Fecha nac.</label><input type="date" id="hijo2_fnac"></div>
-    </div>
-    <div class="grid-3" style="margin-top:12px">
-      <div><label for="hijo3">Hijo/a 3</label><input type="text" id="hijo3"></div>
-      <div><label for="hijo3_dni">DNI</label><input type="text" id="hijo3_dni" inputmode="numeric"></div>
-      <div><label for="hijo3_fnac">Fecha nac.</label><input type="date" id="hijo3_fnac"></div>
-    </div>
+    <div id="fam_list"></div>
+    <button type="button" class="btn-ghost" id="addFamBtn" style="margin-top:12px">+ Agregar familiar</button>
+
+    <template id="fam_tpl">
+      <div class="fam-item">
+        <div class="fam-head">
+          <span class="fam-title">Familiar</span>
+          <button type="button" class="fam-del">Quitar</button>
+        </div>
+        <div class="grid-3">
+          <div><label data-for="apellidos">Apellidos</label><input type="text" data-f="apellidos"></div>
+          <div><label data-for="nombres">Nombres</label><input type="text" data-f="nombres"></div>
+          <div>
+            <label data-for="parentesco">Parentesco</label>
+            <select data-f="parentesco">
+              <option value="">Seleccione…</option><option>Cónyuge</option><option>Conviviente</option>
+              <option>Hijo/a</option><option>Padre</option><option>Madre</option>
+              <option>Hermano/a</option><option>Otro</option>
+            </select>
+          </div>
+          <div>
+            <label data-for="sexo">Sexo</label>
+            <select data-f="sexo">
+              <option value="">Seleccione…</option><option>Femenino</option><option>Masculino</option><option>X</option>
+            </select>
+          </div>
+          <div>
+            <label data-for="tipo_doc">Tipo de documento</label>
+            <select data-f="tipo_doc">
+              <option>DNI</option><option>Pasaporte</option><option>Cédula</option><option>LE</option><option>LC</option>
+            </select>
+          </div>
+          <div><label data-for="nro_doc">Número de documento (*)</label><input type="text" data-f="nro_doc" inputmode="numeric"></div>
+          <div><label data-for="cuil">CUIL</label><input type="text" data-f="cuil" inputmode="numeric" placeholder="20-00000000-0"></div>
+          <div><label data-for="fnac">Fecha de nacimiento</label><input type="date" data-f="fnac"></div>
+          <div><label data-for="nacionalidad">Nacionalidad</label><input type="text" data-f="nacionalidad"></div>
+          <div class="col-2"><label data-for="email">Email</label><input type="email" data-f="email"></div>
+          <div><label data-for="celular">Teléfono celular</label><input type="tel" data-f="celular"></div>
+        </div>
+        <div class="fam-sub">Domicilio</div>
+        <div class="grid-3">
+          <div class="col-2"><label data-for="calle">Calle</label><input type="text" data-f="calle"></div>
+          <div><label data-for="numero">Número</label><input type="text" data-f="numero"></div>
+          <div><label data-for="piso">Piso</label><input type="text" data-f="piso"></div>
+          <div><label data-for="dpto">Departamento</label><input type="text" data-f="dpto"></div>
+          <div><label data-for="cp">Código postal</label><input type="text" data-f="cp"></div>
+          <div><label data-for="pais">País</label><input type="text" data-f="pais"></div>
+          <div><label data-for="provincia">Provincia</label><input type="text" data-f="provincia"></div>
+          <div><label data-for="localidad">Localidad</label><input type="text" data-f="localidad"></div>
+          <div><label data-for="telefono">Teléfono</label><input type="tel" data-f="telefono"></div>
+          <div class="col-2"><label data-for="otros">Otros</label><input type="text" data-f="otros"></div>
+        </div>
+        <div style="margin-top:14px"><label data-for="observacion">Observación</label><textarea data-f="observacion" rows="2"></textarea></div>
+      </div>
+    </template>
 
     <h3>Antecedentes laborales</h3>
     <div class="grid">
@@ -384,6 +422,33 @@ document.querySelectorAll('input[name="fam_vinculo"]').forEach(r=>{
     document.getElementById('fam_detalle_wrap').style.display = r.value==='Sí' ? 'block' : 'none';
   });
 });
+
+// ====== Datos familiares (bloques repetibles) ======
+const famList=document.getElementById('fam_list');
+const famTpl=document.getElementById('fam_tpl');
+let famSeq=0;
+function renumberFam(){
+  famList.querySelectorAll('.fam-item').forEach((el,i)=>{el.querySelector('.fam-title').textContent='Familiar '+(i+1);});
+}
+function addFam(){
+  const n=++famSeq;
+  const node=famTpl.content.firstElementChild.cloneNode(true);
+  node.querySelectorAll('[data-f]').forEach(el=>{el.id='fam'+n+'_'+el.dataset.f;});
+  node.querySelectorAll('[data-for]').forEach(el=>{el.htmlFor='fam'+n+'_'+el.dataset.for;});
+  node.querySelector('.fam-del').addEventListener('click',()=>{node.remove();renumberFam();});
+  famList.appendChild(node);
+  renumberFam();
+}
+document.getElementById('addFamBtn').addEventListener('click',addFam);
+addFam();
+// Devuelve solo los familiares con algún dato cargado (tipo_doc tiene valor por defecto)
+function getFamiliares(){
+  return [...famList.querySelectorAll('.fam-item')].map((el,i)=>{
+    const f={n:i+1};
+    el.querySelectorAll('[data-f]').forEach(inp=>{f[inp.dataset.f]=inp.value.trim();});
+    return f;
+  }).filter(f=>Object.keys(f).some(k=>k!=='n'&&k!=='tipo_doc'&&f[k]));
+}
 
 // ====== Signature pad ======
 const canvas = document.getElementById('pad');
@@ -534,12 +599,25 @@ function buildPDF(d){
   twoCol('Celular',d.celular,'Teléfono alternativo',d.tel_alt);
   twoCol('Contacto de emergencia',d.contacto_emergencia,'Parentesco',d.parentesco);
   h('Datos familiares');
-  twoCol('Padre',d.padre,'Madre',d.madre);
-  twoCol('Cónyuge',d.conyuge,'DNI cónyuge',d.conyuge_dni);
-  oneCol('Fecha nac. cónyuge',d.conyuge_fnac);
-  twoCol('Hijo/a 1',d.hijo1,'DNI',d.hijo1_dni);
-  twoCol('Hijo/a 2',d.hijo2,'DNI',d.hijo2_dni);
-  twoCol('Hijo/a 3',d.hijo3,'DNI',d.hijo3_dni);
+  if(!d.familiares.length){ oneCol('Familiares','Sin familiares declarados'); }
+  d.familiares.forEach((f,i)=>{
+    need(40,'4 · LEGAJO (cont.)');
+    gap(1);line('Familiar '+(i+1)+(f.parentesco?' · '+f.parentesco:''),9.5,'bold','#14213d');
+    twoCol('Apellidos',f.apellidos,'Nombres',f.nombres);
+    twoCol('Parentesco',f.parentesco,'Sexo',f.sexo);
+    twoCol('Tipo de documento',f.tipo_doc,'N° de documento',f.nro_doc);
+    twoCol('CUIL',f.cuil,'Fecha de nacimiento',f.fnac);
+    twoCol('Nacionalidad',f.nacionalidad,'Teléfono celular',f.celular);
+    twoCol('Email',f.email,'Teléfono',f.telefono);
+    twoCol('Calle y N°',[f.calle,f.numero].filter(Boolean).join(' '),'Piso / Dpto',[f.piso,f.dpto].filter(Boolean).join(' / '));
+    twoCol('Código postal',f.cp,'Localidad',f.localidad);
+    twoCol('Provincia',f.provincia,'País',f.pais);
+    oneCol('Otros',f.otros);
+    need(14,'4 · LEGAJO (cont.)');
+    doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor('#1b4965');
+    doc.text('Observación',M,y);y+=4;
+    line(f.observacion||'—',9,'normal','#14213d');gap(4);
+  });
   h('Antecedentes laborales');
   twoCol('Empresa 1',d.ant1_empresa,'Puesto',d.ant1_puesto);
   twoCol('Inicio',d.ant1_inicio,'Cese',d.ant1_cese);
@@ -579,6 +657,9 @@ document.getElementById('sendBtn').addEventListener('click',async()=>{
   const accFinal=document.getElementById('acc_final').checked;
 
   if(!aclaracion||!dni){return showMsg('Completá nombre y DNI.','err');}
+  const familiares=getFamiliares();
+  const famSinDoc=familiares.find(f=>!f.nro_doc);
+  if(famSinDoc){return showMsg('Completá el Número de Documento del Familiar '+famSinDoc.n+'.','err');}
   if(!hasSignature){return showMsg('Falta la firma.','err');}
   if(!(accEtica&&accFam&&accConf&&accSalud&&accFinal)){
     return showMsg('Tenés que aceptar las 3 políticas, la DDJJ de salud y la conformidad final.','err');
@@ -594,11 +675,7 @@ document.getElementById('sendBtn').addEventListener('click',async()=>{
     cuil:val('cuil'), fnac:val('fnac'), nacionalidad:val('nacionalidad'),
     estado_civil:val('estado_civil'), celular:val('celular'), tel_alt:val('tel_alt'),
     contacto_emergencia:val('contacto_emergencia'), parentesco:val('parentesco'),
-    padre:val('padre'), madre:val('madre'),
-    conyuge:val('conyuge'), conyuge_dni:val('conyuge_dni'), conyuge_fnac:val('conyuge_fnac'),
-    hijo1:val('hijo1'), hijo1_dni:val('hijo1_dni'), hijo1_fnac:val('hijo1_fnac'),
-    hijo2:val('hijo2'), hijo2_dni:val('hijo2_dni'), hijo2_fnac:val('hijo2_fnac'),
-    hijo3:val('hijo3'), hijo3_dni:val('hijo3_dni'), hijo3_fnac:val('hijo3_fnac'),
+    familiares,
     ant1_empresa:val('ant1_empresa'), ant1_puesto:val('ant1_puesto'), ant1_tel:val('ant1_tel'),
     ant1_inicio:val('ant1_inicio'), ant1_cese:val('ant1_cese'), ant1_dom:val('ant1_dom'),
     ant2_empresa:val('ant2_empresa'), ant2_puesto:val('ant2_puesto'), ant2_tel:val('ant2_tel'),
