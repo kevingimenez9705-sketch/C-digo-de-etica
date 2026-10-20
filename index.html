@@ -218,10 +218,9 @@
 
   <div class="card">
     <h2>Datos del ingreso</h2>
-    <div class="grid-3">
+    <div class="grid">
       <div><label for="fecha_ingreso">Fecha de ingreso</label><input type="date" id="fecha_ingreso"></div>
       <div><label for="puesto">Puesto</label><input type="text" id="puesto"></div>
-      <div><label for="legajo">Legajo</label><input type="text" id="legajo" placeholder="N°"></div>
     </div>
 
     <h3>Datos personales</h3>
@@ -372,6 +371,12 @@
       <div class="radio-row"><label><input type="radio" name="h_llave" value="Sí"> Sí</label><label><input type="radio" name="h_llave" value="No"> No</label></div>
       <span class="t-name">Control de cochera</span>
       <div class="radio-row"><label><input type="radio" name="h_cochera" value="Sí"> Sí</label><label><input type="radio" name="h_cochera" value="No"> No</label></div>
+      <span class="t-name">Tablet</span>
+      <div class="radio-row"><label><input type="radio" name="h_tablet" value="Sí"> Sí</label><label><input type="radio" name="h_tablet" value="No"> No</label></div>
+      <span class="t-name">Uniforme</span>
+      <div class="radio-row"><label><input type="radio" name="h_uniforme" value="Sí"> Sí</label><label><input type="radio" name="h_uniforme" value="No"> No</label></div>
+      <span class="t-name">Mochila con herramientas (mantenimiento)</span>
+      <div class="radio-row"><label><input type="radio" name="h_mochila" value="Sí"> Sí</label><label><input type="radio" name="h_mochila" value="No"> No</label></div>
     </div>
     <div style="margin-top:14px"><label for="h_otros">Otros</label><input type="text" id="h_otros"></div>
   </div>
@@ -591,7 +596,6 @@ function buildPDF(d){
 
   h('Datos del ingreso');
   twoCol('Fecha de ingreso',d.fecha_ingreso,'Puesto',d.puesto);
-  oneCol('Legajo N°',d.legajo);
   h('Datos personales');
   twoCol('Nombre y Apellido',d.aclaracion,'DNI',d.dni);
   twoCol('CUIL',d.cuil,'Fecha de nacimiento',d.fnac);
@@ -640,6 +644,8 @@ function buildPDF(d){
   h('Entrega de Herramientas de Trabajo');
   twoCol('Celular corporativo',d.h_celular,'Computadora portátil',d.h_pc);
   twoCol('Llave de oficina',d.h_llave,'Control de cochera',d.h_cochera);
+  twoCol('Tablet',d.h_tablet,'Uniforme',d.h_uniforme);
+  oneCol('Mochila con herramientas (mantenimiento)',d.h_mochila);
   oneCol('Otros',d.h_otros);
 
   signBlock('4 · LEGAJO — CONFORMIDAD');
@@ -671,7 +677,7 @@ document.getElementById('sendBtn').addEventListener('click',async()=>{
   const d={
     aclaracion, dni, sector:val('sector'), fecha:val('fecha'),
     fam_vinculo:radio('fam_vinculo'), fam_detalle:val('fam_detalle'),
-    fecha_ingreso:val('fecha_ingreso'), puesto:val('puesto'), legajo:val('legajo'),
+    fecha_ingreso:val('fecha_ingreso'), puesto:val('puesto'),
     cuil:val('cuil'), fnac:val('fnac'), nacionalidad:val('nacionalidad'),
     estado_civil:val('estado_civil'), celular:val('celular'), tel_alt:val('tel_alt'),
     contacto_emergencia:val('contacto_emergencia'), parentesco:val('parentesco'),
@@ -685,7 +691,8 @@ document.getElementById('sendBtn').addEventListener('click',async()=>{
     dom_entrecalles:val('dom_entrecalles'), dom_fijo:val('dom_fijo'), dom_cel:val('dom_cel'),
     enf:radio('enf'), enf_cual:val('enf_cual'), cir:radio('cir'), cir_cual:val('cir_cual'),
     h_celular:radio('h_celular'), h_pc:radio('h_pc'), h_llave:radio('h_llave'),
-    h_cochera:radio('h_cochera'), h_otros:val('h_otros'),
+    h_cochera:radio('h_cochera'), h_tablet:radio('h_tablet'), h_uniforme:radio('h_uniforme'),
+    h_mochila:radio('h_mochila'), h_otros:val('h_otros'),
     sigImg:canvas.toDataURL('image/png'),
     timestamp:new Date().toLocaleString('es-AR')
   };
