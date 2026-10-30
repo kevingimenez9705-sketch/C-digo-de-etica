@@ -239,7 +239,7 @@
         </select>
       </div>
       <div><label for="celular">Celular</label><input type="tel" id="celular"></div>
-      <div class="col-2"><label for="tel_alt">Teléfono alternativo</label><input type="tel" id="tel_alt"></div>
+      <div class="col-2"><label for="tel_alt">Mail</label><input type="tel" id="tel_alt"></div>
       <div><label for="contacto_emergencia">Contacto de emergencia</label><input type="text" id="contacto_emergencia" placeholder="Nombre y teléfono"></div>
       <div><label for="parentesco">Parentesco</label><input type="text" id="parentesco" placeholder="Ej.: Madre, Cónyuge, Hermano"></div>
     </div>
@@ -596,7 +596,7 @@ function buildPDF(d){
   twoCol('Nombre y Apellido',d.aclaracion,'DNI',d.dni);
   twoCol('CUIL',d.cuil,'Fecha de nacimiento',d.fnac);
   twoCol('Nacionalidad',d.nacionalidad,'Estado civil',d.estado_civil);
-  twoCol('Celular',d.celular,'Teléfono alternativo',d.tel_alt);
+  twoCol('Celular',d.celular,'Mail',d.tel_alt);
   twoCol('Contacto de emergencia',d.contacto_emergencia,'Parentesco',d.parentesco);
   h('Datos familiares');
   if(!d.familiares.length){ oneCol('Familiares','Sin familiares declarados'); }
